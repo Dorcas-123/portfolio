@@ -1,5 +1,5 @@
+import Image from "next/image";
 import styles from "./page.module.css";
-import ImageSlot from "./ImageSlot";
 import { profile, projects, community, contact } from "./data";
 
 // Card background colors, used in turn: lavender, peach, mint, yellow.
@@ -37,7 +37,11 @@ export default function Home() {
               See my work
             </a>
           </div>
-          <ImageSlot image={profile.image} variant="portrait" priority />
+          {profile.image && (
+            <div className={styles.portrait}>
+              <Image {...profile.image} alt={profile.image.alt} sizes="(max-width: 700px) 230px, 300px" priority />
+            </div>
+          )}
         </section>
 
         {/* About */}
@@ -55,26 +59,40 @@ export default function Home() {
           <SectionTitle>Selected work</SectionTitle>
           <div className={styles.grid}>
             {projects.map((project, i) => (
-              <article key={i} className={`${styles.card} ${cardColors[i % cardColors.length]}`}>
-                <ImageSlot image={project.image} variant="cardImage" />
-                {project.status && <span className={styles.status}>{project.status}</span>}
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-                {project.contribution && (
-                  <p className={styles.contribution}>
-                    <strong>My contribution:</strong> {project.contribution}
-                  </p>
+              // Projects with an image get a full-width card (image beside the text).
+              <article
+                key={i}
+                className={`${styles.card} ${cardColors[i % cardColors.length]} ${project.image ? styles.featured : ""}`}
+              >
+                {project.image && (
+                  <div className={styles.cardImage}>
+                    <Image
+                      {...project.image}
+                      alt={project.image.alt}
+                      sizes="(max-width: 700px) 100vw, 520px"
+                    />
+                  </div>
                 )}
-                {project.link && (
-                  <a
-                    href={project.link}
-                    className={styles.cardButton}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {project.linkLabel || "Learn more"} →
-                  </a>
-                )}
+                <div className={styles.cardBody}>
+                  {project.status && <span className={styles.status}>{project.status}</span>}
+                  <h3>{project.name}</h3>
+                  <p>{project.description}</p>
+                  {project.contribution && (
+                    <p className={styles.contribution}>
+                      <strong>My contribution:</strong> {project.contribution}
+                    </p>
+                  )}
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      className={styles.cardButton}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.linkLabel || "Learn more"} →
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
           </div>
@@ -84,14 +102,13 @@ export default function Home() {
         <section id="community" className={styles.section}>
           <SectionTitle>Community &amp; leadership</SectionTitle>
           <ul className={styles.community}>
-            {community.items.map((item, i) => (
+            {community.map((item, i) => (
               <li key={i}>
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
               </li>
             ))}
           </ul>
-          <ImageSlot image={community.image} variant="communityImage" />
         </section>
 
         {/* Contact */}

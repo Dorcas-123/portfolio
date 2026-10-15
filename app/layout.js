@@ -22,7 +22,7 @@ const hand = Caveat({
 
 // This is the title shown in the browser tab and in Google search results.
 export const metadata = {
-  title: `${profile.name} — Portfolio`,
+  title: `${profile.name} | Portfolio`,
   description: profile.intro,
 };
 
