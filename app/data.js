@@ -51,6 +51,8 @@ export const projects = [
     name: "Identity Redefined",
     description:
       "Through my podcast and writing, I explore identity in Christ, Scripture, and what it looks like to live out what we believe.",
+    link: "https://open.spotify.com/show/6LKnaN7KjarVrf4Z0R7Plb",
+    linkLabel: "Listen on Spotify",
   },
   {
     name: "Identity to Impact",
