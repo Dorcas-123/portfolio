@@ -1,28 +1,27 @@
-/* Site-wide colors and fonts. Change --accent to try a different highlight color. */
+/* Site-wide colors and fonts.
+   The pastel theme stays the same even if a visitor's device uses dark mode. */
 :root {
-  --background: #ffffff;
-  --surface: #fafafa;
-  --foreground: #171717;
-  --muted: #5f6368;
-  --border: #e5e5e5;
-  --accent: #2563eb;
-  --max-width: 860px;
-}
+  color-scheme: light;
 
-/* Dark mode: used automatically when the visitor's device is set to dark */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b0b0c;
-    --surface: #141416;
-    --foreground: #ededed;
-    --muted: #a1a1aa;
-    --border: #27272a;
-    --accent: #60a5fa;
-  }
+  --background: #fdfaf4; /* off-white */
+  --foreground: #2a2433; /* dark, readable text */
+  --muted: #5a5266;
+  --border: #ebe4d8;
 
-  html {
-    color-scheme: dark;
-  }
+  /* Pastel accents */
+  --lavender: #e7ddf8;
+  --peach: #fde0d0;
+  --yellow: #fdf1bf;
+  --mint: #d3f1e2;
+
+  /* Deeper versions of the pastels, for lines and small details */
+  --lavender-ink: #7a5cc4;
+  --peach-ink: #e08a63;
+  --yellow-ink: #e2b93b;
+  --mint-ink: #4fae86;
+
+  --max-width: 1000px;
+  --radius: 24px;
 }
 
 * {
@@ -31,25 +30,31 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem; /* keeps section titles from hiding under the sticky nav */
+  scroll-padding-top: 5rem; /* keeps section titles from hiding under the sticky nav */
 }
 
 body {
   margin: 0;
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), Georgia, serif;
+  line-height: 1.2;
 }
 
-a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--lavender);
 }

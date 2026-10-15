@@ -1,37 +1,59 @@
-/* Styles for the home page. Colors live in globals.css. */
+/* Styles for the home page. Colors and fonts live in globals.css. */
 
 /* ---------- Top navigation ---------- */
-.nav {
+.navWrap {
   position: sticky;
   top: 0;
   z-index: 10;
+  background: color-mix(in srgb, var(--background) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1rem 1.25rem;
-  background: var(--background);
-  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 1.25rem;
 }
 
 .brand {
-  font-weight: 600;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 46% 54% 52% 48% / 55% 45% 55% 45%; /* slightly wobbly circle */
+  background: var(--lavender);
+  border: 2px solid var(--foreground);
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.brand:hover {
+  transform: rotate(-8deg);
 }
 
 .links {
   display: flex;
-  gap: 1.25rem;
-  font-size: 0.95rem;
+  gap: 0.35rem;
 }
 
 .links a {
-  color: var(--muted);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
 }
 
 .links a:hover {
-  color: var(--foreground);
+  background: var(--peach);
 }
 
 /* ---------- Page layout ---------- */
@@ -42,158 +64,289 @@
 }
 
 .section {
-  padding: 4rem 0;
-  border-top: 1px solid var(--border);
+  padding: 5rem 0;
 }
 
-.section h2 {
-  font-size: 1.5rem;
-  margin: 0 0 1.25rem;
+.sectionTitle {
+  display: inline-block;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  margin: 0 0 2rem;
 }
 
-.section h2:not(:first-child) {
-  margin-top: 3rem;
+.squiggle {
+  display: block;
+  width: 7rem;
+  height: 0.8rem;
+  margin-top: 0.3rem;
+  color: var(--peach-ink);
 }
 
-.section p {
-  color: var(--muted);
-  max-width: 65ch;
+#work .squiggle {
+  color: var(--lavender-ink);
 }
 
-/* ---------- Hero ---------- */
+#community .squiggle {
+  color: var(--mint-ink);
+}
+
+#contact .squiggle {
+  color: var(--yellow-ink);
+}
+
+/* ---------- Introduction ---------- */
 .hero {
-  padding: 6rem 0 5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 7rem 0 5rem;
 }
 
-.eyebrow {
-  color: var(--accent);
-  font-weight: 500;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 0 0 0.75rem;
+.heroText {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
 }
 
-.hero h1 {
-  font-size: clamp(2.5rem, 7vw, 4rem);
-  line-height: 1.05;
+.hello {
+  font-family: var(--font-hand), cursive;
+  font-size: 1.8rem;
+  color: var(--lavender-ink);
   margin: 0;
 }
 
-.title {
-  font-size: 1.35rem;
-  color: var(--muted);
-  margin: 0.75rem 0 1.5rem;
+.hero h1 {
+  font-size: clamp(2.75rem, 8vw, 4.75rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+
+.tagline {
+  display: inline;
+  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+  font-weight: 600;
+  /* a highlighter-pen stripe behind the text */
+  background: linear-gradient(transparent 55%, var(--yellow) 55%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .intro {
+  color: var(--muted);
   font-size: 1.1rem;
-  max-width: 55ch;
-  margin: 0 0 2rem;
+  margin: 1.5rem 0 2.25rem;
 }
 
 .button {
   display: inline-block;
-  padding: 0.7rem 1.4rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 999px;
   background: var(--foreground);
   color: var(--background);
-  font-weight: 500;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--peach-ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .button:hover {
-  opacity: 0.85;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--peach-ink);
 }
 
-/* ---------- Skill / project tags ---------- */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  list-style: none;
-  padding: 0;
+.photo {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 280px;
+  aspect-ratio: 4 / 5;
+  border-radius: 48% 52% 44% 56% / 40% 42% 58% 60%;
+  overflow: hidden;
+  border: 3px solid var(--foreground);
+  box-shadow: 10px 10px 0 var(--mint);
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+/* ---------- Hand-drawn decorations ---------- */
+.doodles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.doodles svg {
+  position: absolute;
+}
+
+.blob {
+  width: 22rem;
+  top: 1.5rem;
+  right: -4rem;
+  opacity: 0.7;
+}
+
+.sun {
+  width: 5.5rem;
+  top: 2.5rem;
+  right: 18%;
+}
+
+.sparkle {
+  width: 2.75rem;
+  bottom: 3rem;
+  right: 6%;
+  transform: rotate(12deg);
+}
+
+.loop {
+  width: 9rem;
+  bottom: 1.5rem;
+  left: -0.5rem;
+  opacity: 0.8;
+}
+
+/* ---------- About ---------- */
+.aboutCard {
+  position: relative;
+  max-width: 46rem;
+  padding: 2rem 2.25rem;
+  border-radius: var(--radius);
+  background: var(--peach);
+}
+
+.aboutCard p {
   margin: 0;
+  font-size: 1.1rem;
 }
 
-.tags li {
-  padding: 0.3rem 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 0.9rem;
-}
-
-/* ---------- Experience timeline ---------- */
-.timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.timeline li {
-  padding: 1rem 0;
-}
-
-.timeline li + li {
-  border-top: 1px dashed var(--border);
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.25rem 1rem;
-}
-
-.row h3 {
-  font-size: 1.05rem;
-  margin: 0;
-}
-
-.row h3 span {
-  font-weight: 400;
-  color: var(--muted);
-}
-
-.dates {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.timeline p {
-  margin: 0.4rem 0 0;
+.aboutCard p + p {
+  margin-top: 1rem;
 }
 
 /* ---------- Project cards ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface);
+  gap: 0.85rem;
+  padding: 1.75rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--foreground);
+  box-shadow: 6px 6px 0 var(--foreground);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translate(-3px, -3px) rotate(-0.5deg);
+  box-shadow: 9px 9px 0 var(--foreground);
+}
+
+.lavender {
+  background: var(--lavender);
+}
+
+.peach {
+  background: var(--peach);
+}
+
+.mint {
+  background: var(--mint);
+}
+
+.yellow {
+  background: var(--yellow);
 }
 
 .card h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 .card p {
   margin: 0;
-  flex-grow: 1;
 }
 
-.card a {
-  color: var(--accent);
-  font-weight: 500;
+.contribution {
+  margin-top: auto !important;
+  padding-top: 0.85rem;
+  border-top: 2px dashed color-mix(in srgb, var(--foreground) 30%, transparent);
+  font-size: 0.97rem;
+}
+
+.cardImage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: calc(var(--radius) - 8px);
+  overflow: hidden;
+}
+
+.cardImage img {
+  object-fit: cover;
+}
+
+.cardButton {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: var(--background);
+  border: 2px solid var(--foreground);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cardButton:hover {
+  background: var(--yellow);
+}
+
+/* ---------- Community ---------- */
+.community {
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.community li {
+  position: relative;
+  padding: 1.5rem 1.75rem 1.5rem 3.75rem;
+  border-radius: var(--radius);
+  background: var(--mint);
+}
+
+.community li:nth-child(even) {
+  background: var(--yellow);
+}
+
+/* hand-drawn-style dot marker */
+.community li::before {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  top: 1.95rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 45% 55% 50% 50%;
+  border: 2px solid var(--foreground);
+  background: var(--background);
+}
+
+.community h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.community p {
+  margin: 0;
 }
 
 /* ---------- Contact ---------- */
@@ -201,41 +354,105 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  gap: 1rem;
 }
 
-.contactLinks a:not(.button) {
-  color: var(--accent);
-  font-weight: 500;
+.pill {
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid var(--foreground);
+  background: var(--lavender);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pill:hover {
+  background: var(--yellow);
 }
 
 /* ---------- Footer ---------- */
 .footer {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem 1.25rem;
+  padding: 2rem 1.25rem 3rem;
   border-top: 1px solid var(--border);
   color: var(--muted);
   font-size: 0.9rem;
 }
 
-/* ---------- Small screens (phones) ---------- */
-@media (max-width: 600px) {
-  .links {
-    gap: 0.9rem;
-    font-size: 0.85rem;
+/* ---------- Respect "reduce motion" settings ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .brand,
+  .button,
+  .card {
+    transition: none;
   }
 
-  .brand {
+  .brand:hover,
+  .button:hover,
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 700px) {
+  .hero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 4rem 0 3.5rem;
+  }
+
+  .photo {
+    width: 220px;
+  }
+
+  .blob {
+    width: 14rem;
+    top: 0;
+    right: -5rem;
+  }
+
+  .sun {
+    width: 4rem;
+    top: 0.75rem;
+    right: 1rem;
+  }
+
+  .loop {
     display: none;
   }
 
-  .hero {
-    padding: 4rem 0 3rem;
+  .section {
+    padding: 3.5rem 0;
   }
 
-  .section {
-    padding: 3rem 0;
+  .aboutCard {
+    padding: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .community li {
+    padding: 1.25rem 1.25rem 1.25rem 3.25rem;
+  }
+
+  .community li::before {
+    left: 1.25rem;
+    top: 1.7rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .links {
+    gap: 0;
+  }
+
+  .links a {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.85rem;
   }
 }

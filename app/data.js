@@ -1,79 +1,61 @@
 // ✏️ EDIT THIS FILE to change what your portfolio says.
 // Everything on the page comes from here — no need to touch the other files.
-// Text in [square brackets] is a placeholder: replace it with your own words.
 
 export const profile = {
   name: "Dorcas Adewumi",
-  title: "[Your job title, e.g. Program Coordinator]",
-  location: "[City, State]",
-  // One or two sentences. This is the first thing visitors read.
+  initials: "DA",
+  tagline: "Curious about people. Drawn to ideas. Rooted in faith.",
   intro:
-    "[A short sentence about who you are and what you do. For example: I help teams stay organized and deliver great results.]",
-  // A longer "About me" paragraph. Each string in the list becomes its own paragraph.
+    "I’m a Biomedical Sciences graduate, writer, and creative who enjoys bringing different people and perspectives together. This is a place for the things I’m building, exploring, and learning along the way.",
   about: [
-    "[Tell your story here: what you do, what you care about, and what kind of work you're looking for.]",
-    "[A second paragraph is optional — maybe a hobby or something that makes you, you.]",
+    "I’m Nigerian-Canadian: born in Kaduna, raised in Lagos, and moved to Canada when I was ten. My interests span research, writing, creativity, and community. My Christian faith shapes how I approach life, and I enjoy exploring how these interests can come together to serve people.",
   ],
+  // Photo of you: put the file in the /public folder, then write its name here,
+  // starting with a slash, e.g. "/dorcas.jpg". Leave as "" to hide it.
+  photo: "",
 };
 
-export const skills = [
-  "[Skill 1]",
-  "[Skill 2]",
-  "[Skill 3]",
-  "[Skill 4]",
-  "[Skill 5]",
-  "[Skill 6]",
-];
-
-// Most recent first. Copy one { ... } block to add another entry.
-export const experience = [
-  {
-    role: "[Job title]",
-    org: "[Organization]",
-    dates: "[2024 – Present]",
-    summary: "[One or two sentences about what you did and what you achieved.]",
-  },
-  {
-    role: "[Previous job title]",
-    org: "[Organization]",
-    dates: "[2021 – 2024]",
-    summary: "[What you did there.]",
-  },
-];
-
-export const education = [
-  {
-    degree: "[Degree or certificate]",
-    school: "[School name]",
-    dates: "[Year]",
-  },
-];
-
-// Copy one { ... } block to add another project. Leave link as "" if there's none.
+// Each { ... } block is one card under "Selected work".
+// Optional fields:
+//   contribution: shown as "My contribution: ..."
+//   image: a file in /public, e.g. "/known.png"
+//   link + linkLabel: adds a button, e.g. link: "https://...", linkLabel: "Listen to the podcast"
 export const projects = [
   {
-    name: "[Project name]",
-    description: "[What it is, your role, and the result.]",
-    tags: ["[Tag]", "[Tag]"],
-    link: "",
+    name: "KNOWN",
+    description:
+      "A Scripture-centred tool developed with a team for Christian international students carrying worry about conflict back home. Users begin by choosing a picture that reflects their experience, then explore Scripture and respond through prayer or connection with someone.",
+    contribution:
+      "leading the team and shaping the concept, user journey, content, and pitch.",
   },
   {
-    name: "[Project name]",
-    description: "[What it is, your role, and the result.]",
-    tags: ["[Tag]"],
-    link: "",
+    name: "Honours Research — Making Better Use of Existing Lab Tools",
+    description:
+      "For my honours thesis at Brock University, I explored a potentially more cost-effective way to measure how cells use oxygen. My research investigated whether an existing oxygen-monitoring system could be adapted for this purpose.",
   },
   {
-    name: "This portfolio",
-    description: "My personal website, built with Next.js and deployed on Vercel.",
-    tags: ["Next.js", "React", "CSS"],
-    link: "https://github.com/Dorcas-123/portfolio",
+    name: "Identity Redefined",
+    description:
+      "Through my podcast and writing, I explore identity in Christ, Scripture, and what it looks like to live out what we believe.",
+  },
+];
+
+export const community = [
+  {
+    name: "F.O.C.U.S. — Friends of College and University Students",
+    description:
+      "Served as an ambassador, intern, and club president during university.",
+  },
+  {
+    name: "SHESees",
+    description:
+      "Planning and facilitating creative, faith-based sessions for girls to build confidence and connection.",
   },
 ];
 
 // Leave a value as "" to hide that link.
 export const contact = {
-  email: "[you@example.com]",
-  github: "https://github.com/Dorcas-123",
+  email: "",
   linkedin: "",
+  github: "https://github.com/Dorcas-123",
 };

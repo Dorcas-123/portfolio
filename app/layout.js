@@ -1,9 +1,22 @@
-import { Geist } from "next/font/google";
+import { Fraunces, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import { profile } from "./data";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Headings
+const display = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+});
+
+// Body text
+const body = DM_Sans({
+  variable: "--font-body",
+  subsets: ["latin"],
+});
+
+// Handwritten accents
+const hand = Caveat({
+  variable: "--font-hand",
   subsets: ["latin"],
 });
 
@@ -15,7 +28,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={geistSans.variable}>
+    <html lang="en" className={`${display.variable} ${body.variable} ${hand.variable}`}>
       <body>{children}</body>
     </html>
   );
