@@ -154,20 +154,96 @@
   box-shadow: 6px 6px 0 var(--peach-ink);
 }
 
-.photo {
+/* ---------- Image spaces ----------
+   Images keep their own proportions (nothing is cropped);
+   max-height stops very tall screenshots from taking over the page. */
+.imageSlot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageSlot img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  border-radius: 16px;
+}
+
+.portrait {
   position: relative;
   z-index: 1;
   flex-shrink: 0;
-  width: 280px;
-  aspect-ratio: 4 / 5;
-  border-radius: 48% 52% 44% 56% / 40% 42% 58% 60%;
-  overflow: hidden;
+  width: 300px;
+}
+
+.portrait img {
+  max-height: 400px;
+  border-radius: 28px;
   border: 3px solid var(--foreground);
   box-shadow: 10px 10px 0 var(--mint);
 }
 
-.photo img {
-  object-fit: cover;
+.cardImage {
+  padding: 1rem;
+  border-radius: calc(var(--radius) - 6px);
+  background: color-mix(in srgb, var(--background) 65%, transparent);
+}
+
+.cardImage img {
+  max-height: 340px;
+  border-radius: 12px;
+}
+
+.communityImage {
+  margin-top: 1.75rem;
+}
+
+.communityImage img {
+  max-height: 440px;
+  border-radius: var(--radius);
+  border: 2px solid var(--foreground);
+  box-shadow: 6px 6px 0 var(--lavender);
+}
+
+/* Labelled boxes shown on your computer until the real image is added */
+.placeholder {
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 180px;
+  padding: 1.25rem;
+  border: 2px dashed color-mix(in srgb, var(--foreground) 40%, transparent);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--background) 70%, transparent);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.portrait.placeholder {
+  aspect-ratio: 4 / 5;
+  background: var(--background);
+}
+
+.communityImage.placeholder {
+  min-height: 220px;
+}
+
+.placeholderLabel {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.placeholder code {
+  font-size: 0.82rem;
+  word-break: break-all;
+}
+
+.placeholderNote {
+  font-family: var(--font-hand), cursive;
+  font-size: 1.2rem;
+  color: var(--lavender-ink);
 }
 
 /* ---------- Hand-drawn decorations ---------- */
@@ -229,8 +305,8 @@
 /* ---------- Project cards ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem;
 }
 
 .card {
@@ -281,15 +357,15 @@
   font-size: 0.97rem;
 }
 
-.cardImage {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  border-radius: calc(var(--radius) - 8px);
-  overflow: hidden;
-}
-
-.cardImage img {
-  object-fit: cover;
+.status {
+  align-self: flex-start;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  border: 2px solid var(--foreground);
+  background: var(--background);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .cardButton {
@@ -404,8 +480,20 @@
     padding: 4rem 0 3.5rem;
   }
 
-  .photo {
-    width: 220px;
+  .portrait {
+    width: 230px;
+  }
+
+  .portrait img {
+    max-height: 300px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardImage img {
+    max-height: 300px;
   }
 
   .blob {

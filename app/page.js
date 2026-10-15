@@ -1,12 +1,12 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import ImageSlot from "./ImageSlot";
 import { profile, projects, community, contact } from "./data";
 
 // Card background colors, used in turn: lavender, peach, mint, yellow.
 const cardColors = [styles.lavender, styles.peach, styles.mint, styles.yellow];
 
 export default function Home() {
-  const hasContact = contact.email || contact.linkedin || contact.github;
+  const hasContact = contact.email || contact.linkedin;
 
   return (
     <>
@@ -37,17 +37,7 @@ export default function Home() {
               See my work
             </a>
           </div>
-          {profile.photo && (
-            <div className={styles.photo}>
-              <Image
-                src={profile.photo}
-                alt={`Photo of ${profile.name}`}
-                fill
-                sizes="(max-width: 700px) 220px, 280px"
-                priority
-              />
-            </div>
-          )}
+          <ImageSlot image={profile.image} variant="portrait" priority />
         </section>
 
         {/* About */}
@@ -66,16 +56,8 @@ export default function Home() {
           <div className={styles.grid}>
             {projects.map((project, i) => (
               <article key={i} className={`${styles.card} ${cardColors[i % cardColors.length]}`}>
-                {project.image && (
-                  <div className={styles.cardImage}>
-                    <Image
-                      src={project.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 700px) 100vw, 400px"
-                    />
-                  </div>
-                )}
+                <ImageSlot image={project.image} variant="cardImage" />
+                {project.status && <span className={styles.status}>{project.status}</span>}
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>
                 {project.contribution && (
@@ -102,13 +84,14 @@ export default function Home() {
         <section id="community" className={styles.section}>
           <SectionTitle>Community &amp; leadership</SectionTitle>
           <ul className={styles.community}>
-            {community.map((item, i) => (
+            {community.items.map((item, i) => (
               <li key={i}>
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
               </li>
             ))}
           </ul>
+          <ImageSlot image={community.image} variant="communityImage" />
         </section>
 
         {/* Contact */}
@@ -118,17 +101,12 @@ export default function Home() {
             <div className={styles.contactLinks}>
               {contact.email && (
                 <a href={`mailto:${contact.email}`} className={styles.button}>
-                  Email me
+                  {contact.email}
                 </a>
               )}
               {contact.linkedin && (
                 <a href={contact.linkedin} className={styles.pill} target="_blank" rel="noopener noreferrer">
                   LinkedIn
-                </a>
-              )}
-              {contact.github && (
-                <a href={contact.github} className={styles.pill} target="_blank" rel="noopener noreferrer">
-                  GitHub
                 </a>
               )}
             </div>
